@@ -50,6 +50,9 @@ h1 {
   color: gold;
   text-align: center;
   border: 1rem solid gold;
+  width: 75px;
+  max-width: 75px;
+  height: 75px;
 }
 
 .question:hover {
@@ -249,4 +252,3 @@ img {
     padding-right: 30px;
   }
 }
-

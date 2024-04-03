@@ -39,8 +39,9 @@ function handleQuestionClick(event) {
   const question = questionsInCategory[questionIndex];
 
   if (question) {
-    // Future: Replace alert with a modal or dedicated question display area
-    prompt(question.question);
+    // replace dollar amount with question
+    event.target.textContent = question.question;
+
   }
 }
 
