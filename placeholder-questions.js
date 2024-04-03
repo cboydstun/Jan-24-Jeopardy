@@ -326,5 +326,5 @@ const placeholderQuestions = [
   },
 ];
 
-export default placeholderQuestions;
+export { placeholderQuestions };
 
