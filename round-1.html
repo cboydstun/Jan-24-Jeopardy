@@ -8,67 +8,67 @@
   </head>
   <body>
     <h1>Round-One</h1>
-    <div class="player-turn">
+    <div class="player-turn" id="player-turn">
       <p>PLAYER ONE'S TURN</p>
     </div>
 
     <div class="container">
       <table align="center" border="7" width="869px" height="261px">
         <tr>
-          <td class="category">Category</td>
-          <td class="category">Category</td>
-          <td class="category">Category</td>
-          <td class="category">Category</td>
-          <td class="category">Category</td>
-          <td class="category">Category</td>
+          <td class="category" id="category">Category</td>
+          <td class="category" id="category">Category</td>
+          <td class="category" id="category">Category</td>
+          <td class="category" id="category">Category</td>
+          <td class="category" id="category">Category</td>
+          <td class="category" id="category">Category</td>
         </tr>
         <tr>
-          <td class="question">$200</td>
-          <td class="question">$200</td>
-          <td class="question">$200</td>
-          <td class="question">$200</td>
-          <td class="question">$200</td>
-          <td class="question">$200</td>
+          <td class="question" id="question-1-200">$200</td>
+          <td class="question" id="question-2-200">$200</td>
+          <td class="question" id="question">$200</td>
+          <td class="question" id="question">$200</td>
+          <td class="question" id="question">$200</td>
+          <td class="question" id="question">$200</td>
         </tr>
         <tr>
-          <td class="question">$400</td>
-          <td class="question">$400</td>
-          <td class="question">$400</td>
-          <td class="question">$400</td>
-          <td class="question">$400</td>
-          <td class="question">$400</td>
+          <td class="question" id="question">$400</td>
+          <td class="question" id="question">$400</td>
+          <td class="question" id="question">$400</td>
+          <td class="question" id="question">$400</td>
+          <td class="question" id="question">$400</td>
+          <td class="question" id="question">$400</td>
         </tr>
         <tr>
-          <td class="question">$600</td>
-          <td class="question">$600</td>
-          <td class="question">$600</td>
-          <td class="question">$600</td>
-          <td class="question">$600</td>
-          <td class="question">$600</td>
+          <td class="question" id="question">$600</td>
+          <td class="question" id="question">$600</td>
+          <td class="question" id="question">$600</td>
+          <td class="question" id="question">$600</td>
+          <td class="question" id="question">$600</td>
+          <td class="question" id="question">$600</td>
         </tr>
         <tr>
-          <td class="question">$800</td>
-          <td class="question">$800</td>
-          <td class="question">$800</td>
-          <td class="question">$800</td>
-          <td class="question">$800</td>
-          <td class="question">$800</td>
+          <td class="question" id="question">$800</td>
+          <td class="question" id="question">$800</td>
+          <td class="question" id="question">$800</td>
+          <td class="question" id="question">$800</td>
+          <td class="question" id="question">$800</td>
+          <td class="question" id="question">$800</td>
         </tr>
         <tr>
-          <td class="question">$1000</td>
-          <td class="question">$1000</td>
-          <td class="question">$1000</td>
-          <td class="question">$1000</td>
-          <td class="question">$1000</td>
-          <td class="question">$1000</td>
+          <td class="question" id="question">$1000</td>
+          <td class="question" id="question">$1000</td>
+          <td class="question" id="question">$1000</td>
+          <td class="question" id="question">$1000</td>
+          <td class="question" id="question">$1000</td>
+          <td class="question" id="question">$1000</td>
         </tr>
         <tr>
-          <td class="question">$1200</td>
-          <td class="question">$1200</td>
-          <td class="question">$1200</td>
-          <td class="question">$1200</td>
-          <td class="question">$1200</td>
-          <td class="question">$1200</td>
+          <td class="question" id="question">$1200</td>
+          <td class="question" id="question">$1200</td>
+          <td class="question" id="question">$1200</td>
+          <td class="question" id="question">$1200</td>
+          <td class="question" id="question">$1200</td>
+          <td class="question" id="question">$1200</td>
         </tr>
       </table>
     </div>
@@ -77,16 +77,21 @@
         <input class="answer" placeholder="user input" />
       </div>
       <div id="guess-button">
-        <button class="guess">guess</button>
-        <button class="pass">pass</button>
+        <button class="guess" id="guess">guess</button>
+        <button class="pass" id="pass">pass</button>
       </div>
     </div>
     <div id="player-container">
-      <div class="player" class="score">Player-1 Score:0</div>
-      <div class="player" class="score">Player-2 Score:0</div>
+      <div class="player" class="score" id="player1" id="score">
+        Player-1 Score:0
+      </div>
+      <div class="player" class="score" id="player2" id="score">
+        Player-2 Score:0
+      </div>
     </div>
 
-    <a href="round-2.html" class="next-round">Next Round</a>
+    <a href="round-2.html" class="next-round" id="next-round">Next Round</a>
+    <script src="index.js"></script>
   </body>
 
   <footer>
@@ -100,3 +105,4 @@
     </div>
   </footer>
 </html>
+
