@@ -134,23 +134,25 @@
     </div>
     <div id="container">
       <div id="input">
-        <input class="answer" placeholder="user input" />
+        <input class="answer" id="checkAnswer" placeholder="user input" id="userInput" />
       </div>
       <div id="guess-button">
-        <button class="guess" id="guess">guess</button>
-        <button class="pass" id="pass">pass</button>
+        <button disabled class="guess" id="guess">guess</button>
+        <button disabled class="pass" id="pass">pass</button>
       </div>
     </div>
     <div id="player-container">
-      <div class="player" class="score" id="player1" id="score">
+      <div class="player active" class="player" class="score" id="player1" id="score">
         Player-1 Score:0
       </div>
-      <div class="player" class="score" id="player2" id="score">
+      <div class="player active"  class="score" id="player2" id="score">
         Player-2 Score:0
       </div>
     </div>
+    <div id="nextRound">
+      <a href="round-2.html" class="next-round" id="next-round" disabled >Next Round</a>
+    </div>
 
-    <a href="round-2.html" class="next-round" id="next-round">Next Round</a>
     <script type="module" src="index.js"></script>
   </body>
 
