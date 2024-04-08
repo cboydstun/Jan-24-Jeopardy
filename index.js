@@ -1,107 +1,93 @@
+// Import questions from a separate module/file
 import { placeholderQuestions } from './placeholder-questions.js';
 
+// Grabbing HTML elements to interact with them in JavaScript
 const guess = document.getElementById('guess');
 const passButton = document.getElementById('pass');
 const nextRound = document.getElementById('next-round');
-const answer = document.getElementById('answer');
 const userInput = document.getElementById('userInput');
 
-// initialize the variables for the current player and their score, in other words defining the variables to start.
+// Initializing variables to keep track of the current player and their scores
 let currentPlayer = 1;
 let scores = { player1: 0, player2: 0 };
+let currentAnswer = ''; // Stores the answer of the current question
+let currentValue = 0; // Stores the value of the current question
 
+// Initially disabling the guess and pass buttons because no question is selected yet
 guess.disabled = true;
 passButton.disabled = true;
 nextRound.disabled = true;
 
-// Function to get unique categories
+// Function to extract unique categories from the list of questions
 function getCategories(questions) {
-  const categories = [];
-  questions.forEach((question) => {
-    if (!categories.includes(question.category)) {
-      categories.push(question.category);
-    }
-  });
-  return categories;
+  // Utilizes a Set to ensure uniqueness and maps over the questions to extract categories
+  return [...new Set(questions.map(question => question.category))];
 }
 
-// Function to render categories into the table
+// Function to display categories on the webpage
 function renderCategories() {
   const categories = getCategories(placeholderQuestions);
-  const categoryElements = document.querySelectorAll('.category');
-
-  categories.forEach((category, index) => {
-    if (categoryElements[index]) {
-      // Check if the element exists
-      categoryElements[index].textContent = category;
+  document.querySelectorAll('.category').forEach((element, index) => {
+    // Assigns category names to table headers if available
+    if (categories[index]) {
+      element.textContent = categories[index];
     }
   });
 }
 
-// function getQuestion(answer) {
-//   const questionAnswer = [];
-//   questions.forEach((answer) => {
-//     if (!categories.includes(question.answer)) {
-//       answer.push(question.answer);
-//     }
-//   });
-//   return categories;
-// }
-
+// Sets up click event listeners for each question
 function setupQuestionClickListeners() {
-  document.querySelectorAll('.question').forEach((square) => {
-    square.addEventListener('click', handleQuestionClick);
+  document.querySelectorAll('.question').forEach(element => {
+    element.addEventListener('click', handleQuestionClick);
   });
 }
 
+// Handles clicking on a question
 function handleQuestionClick(event) {
   const category = event.target.dataset.category;
-  const value = parseInt(event.target.dataset.value, 10); // Value is now based on order
-
-  const userInput = category.answer;
-
-  const questionsInCategory = placeholderQuestions.filter(
-    (question) => question.category === category,
-  );
-  // Assuming $200 increment per question, calculate index
-  const questionIndex = value / 200 - 1;
+  const value = parseInt(event.target.dataset.value, 10);
+  const questionsInCategory = placeholderQuestions.filter(question => question.category === category);
+  const questionIndex = value / 200 - 1; // Assuming $200 increments
   const question = questionsInCategory[questionIndex];
 
   if (question) {
-    // replace dollar amount with question
+    // Replaces the dollar value with the question text
     event.target.textContent = question.question;
+    currentAnswer = question.answer; // Stores the correct answer for later comparison
+    currentValue = value; // Stores the question's value for score calculation
   }
-  // userInput.addEventListener('key press', checkAnswer);
 
-  guess.addEventListener('click', () => checkAnswer(answer));
+  // Enables the guess and pass buttons now that a question is selected
   guess.disabled = false;
   passButton.disabled = false;
-  nextRound.disabled = false;
 }
 
-// guess.addEventListener('click', checkAnswer);
-
-// this will alert when the page loads to tell player 1 to start the game
-document.addEventListener('DOMContentLoaded', function () {
+// Alerts the first player to start the game once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
   alert("Player 1, it's your turn to start the game!");
+  renderCategories(); // Displays the categories
+  setupQuestionClickListeners(); // Prepares the questions for interaction
 });
 
-function checkAnswer(userInput, correctAnswer) {
-  // Convert both answers to lowercase for case-insensitive comparison
-  const answer = userInput.toLowerCase().trim();
-  correctAnswer = correctAnswer.toLowerCase().trim();
+// Attaches an event listener to the guess button for checking the user's answer
+guess.addEventListener('click', checkAnswer);
 
-  userInput.addEventListener('keyPress', answer());
-  if (userAnswer === correctAnswer) {
-    console.log('Correct!');
-    // Increase the player's score
-    scores['player' + currentPlayer] += 200; // Assuming each question is worth $200
+// Function to check if the user's answer is correct
+function checkAnswer() {
+  const userAnswer = userInput.value.toLowerCase().trim(); // Gets and trims the user's answer
+
+  // Compares the user's answer to the correct answer, case-insensitively
+  if (userAnswer === currentAnswer.toLowerCase().trim()) {
+    alert('Correct!');
+    scores['player' + currentPlayer] += currentValue; // Updates the score
   } else {
-    console.log('Incorrect!');
-    // Decrease the player's score (if you want to penalize incorrect answers)
-    scores['player' + currentPlayer] -= 200; // Penalize by $200
+    alert('Incorrect!');
   }
-}
-renderCategories();
-setupQuestionClickListeners();
 
+  // Resets the input field for the next answer
+  document.getElementById('userInput').value = '';
+  guess.disabled = true; // Disables the guess button until the next question is selected
+  passButton.disabled = true; // Similarly, disables the pass button
+
+  // Update UI here to reflect changes in score or player turns if necessary
+}
